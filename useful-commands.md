@@ -38,3 +38,9 @@ grep "Schema: [wp_|snapshot_]" /var/log/mysql/mysql-slow.log | awk '{print $3}' 
 
 ### Nano with line numbers shown ###
 nano --linenumbers file.txt
+
+### parse log files for top user agents ###
+zcat LOGZIPFILE 2>/dev/null | cut -d'"' -f6 | sort | uniq -c | sort -rn | head -20
+OR for non-zip
+cat /var/log/path/LOGFILE | cut -d'"' -f6 | sort | uniq -c | sort -rn | head -20
+
